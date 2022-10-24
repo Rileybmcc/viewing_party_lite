@@ -3,6 +3,8 @@
 
 <h3> Existing Users: </h3>
 
+<p><%= link_to "Log In", "/users/login_form", method: :get %></p>
+
 <% @users.each do |user| %>
 
   <p><%= link_to "#{user.email}'s Dashboard", "/users/#{user.id}", method: :get %></p>

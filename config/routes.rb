@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   root to: 'welcome#index'
   get '/register', to: 'welcome#register'
+  get '/login', to: 'users#login_form'
+  post '/login', to: 'users#login_user'
 
   get '/users/:id/discover', to: 'users#discover'
   get '/users/:id', to: 'users#dashboard' # maybe we use show pages as dashboards

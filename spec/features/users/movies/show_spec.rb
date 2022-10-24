@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'User Movies Show Page From Results', :vcr do
   before :each do
-    @user1 = User.create(name: 'Jake', email: 'imjakekim@gmail.com')
+    @user1 = User.create(name: 'Jake', email: 'imjakekim@gmail.com', password_digest: 'fjidoabviofdsbavf')
   end
 
   it 'has required fixed content' do

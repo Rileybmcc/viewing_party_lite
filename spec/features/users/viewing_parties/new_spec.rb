@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'User Viewing Party New Page', :vcr do
   before :each do
-    @user1 = User.create(name: 'Jake', email: 'imjakekim@gmail.com')
-    @user2 = User.create(name: 'Riley', email: 'rileybmccullough@gmail.com')
-    @user3 = User.create(name: '123', email: '123@gmail.com')
-    @user4 = User.create(name: 'abc', email: 'abc@gmail.com')
+    @user1 = User.create(name: 'Jake', email: 'imjakekim@gmail.com', password_digest: 'gburiewvbijvero')
+    @user2 = User.create(name: 'Riley', email: 'rileybmccullough@gmail.com', password_digest: 'gburiewvbijvero')
+    @user3 = User.create(name: '123', email: '123@gmail.com', password_digest: 'gburiewvbijvero')
+    @user4 = User.create(name: 'abc', email: 'abc@gmail.com', password_digest: 'gburiewvbijvero')
   end
 
   it 'has required fixed content on new page' do

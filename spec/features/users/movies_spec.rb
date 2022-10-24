@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'User Movies Page', :vcr do
   before :each do
-    @user1 = User.create(name: 'Jake', email: 'imjakekim@gmail.com')
-    @user2 = User.create(name: 'Riley', email: 'rileybmccullough@gmail.com')
+    @user1 = User.create(name: 'Jake', email: 'imjakekim@gmail.com', password_digest: 'jbfdiapbfjdsipbfdgijs')
+    @user2 = User.create(name: 'Riley', email: 'rileybmccullough@gmail.com', password_digest: 'jbfdiapbfjdsipbfdgijs')
 
     @party1 = ViewingParty.create(movie_title: 'Fellowship of the Ring', length: 200, start_time: '2022-11-18 03:45')
     @party2 = ViewingParty.create(movie_title: 'Psych the Movie', length: 150, start_time: '2022-12-30 18:45')

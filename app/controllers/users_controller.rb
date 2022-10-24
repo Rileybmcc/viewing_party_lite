@@ -21,7 +21,12 @@ class UsersController < ApplicationController
 
   def create
     user = User.new(user_params)
-    if User.find_by(email: user.email)
+    # user = User.new(name: params[:name], email: params[:email], password_digest: params[:password])
+
+    if params[:password] != params[:password_confirmation]
+      redirect_to register_path
+      flash[:alert] = 'Passwords Do Not Match'
+    elsif User.find_by(email: user.email)
       redirect_to register_path
       flash[:alert] = 'Email Already in Use'
     elsif user.save
@@ -31,9 +36,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def login_form
+  end
+
+  def login_user
+
+  end
+
   private
 
   def user_params
-    params.permit(:name, :email)
+    params.permit(:name, :email, :password, :password_confirmation)
   end
 end

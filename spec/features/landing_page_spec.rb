@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Landing Page' do
   before :each do
-    @user1 = User.create(name: 'Jake', email: 'imjakekim@gmail.com')
-    @user2 = User.create(name: 'Riley', email: 'rileybmccullough@gmail.com')
+    @user1 = User.create(name: 'Jake', email: 'imjakekim@gmail.com', password_digest: 'fewhaiogbffdsw')
+    @user2 = User.create(name: 'Riley', email: 'rileybmccullough@gmail.com', password_digest: 'grefwi4rgewsv')
   end
 
   it 'routes request to correct page' do
