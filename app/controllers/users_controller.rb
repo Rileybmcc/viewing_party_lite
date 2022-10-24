@@ -40,7 +40,11 @@ class UsersController < ApplicationController
   end
 
   def login_user
-
+    # require "pry"; binding.pry
+    if User.find_by(email: params[:email]).password_digest == params[:password]
+      user = User.find_by(email: params[:email])
+      redirect_to "/users/#{user.id}"
+    end
   end
 
   private
