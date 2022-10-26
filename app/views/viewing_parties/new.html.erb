@@ -1,11 +1,11 @@
 <h2>Create a Viewing Party for <%= @movie.title %></h2>
 
-<%= button_to "Discover Page", "/users/#{@user.id}/discover", method: :get%>
+<%= button_to "Discover Page", "/discover", method: :get%>
 
 <h3>Viewing Party Details</h3>
 
 
-<%= form_with url: "/users/#{@user.id}/movies/#{@movie.id}/viewing_party/create", local: true, method: :post do |form| %>
+<%= form_with url: "/movies/#{@movie.id}/viewing_party/create", local: true, method: :post do |form| %>
   <%= form.label :title, 'Movie Title: ' %>
   <%= form.label :title, @movie.title %>
   <br>

@@ -24,7 +24,7 @@ RSpec.describe 'Register Page' do
     click_on 'Create New User'
 
     user = User.find_by(email: 'JimmyJohns@gmail.com')
-    expect(current_path).to eq("/users/#{user.id}")
+    expect(current_path).to eq("/dashboard")
   end
 
   it 'cannot reuse emails' do

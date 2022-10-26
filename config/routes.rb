@@ -8,12 +8,12 @@ Rails.application.routes.draw do
   get '/login', to: 'users#login_form'
   post '/login', to: 'users#login_user'
 
-  get '/users/:id/discover', to: 'users#discover'
-  get '/users/:id', to: 'users#dashboard' # maybe we use show pages as dashboards
-  get '/users/:id/movies', to: 'users#movies'
-  get '/users/:id/movies/:movie_id', to: 'movies#show'
-  get '/users/:id/movies/:movie_id/viewing_party/new', to: 'viewing_parties#new'
-  post '/users/:id/movies/:movie_id/viewing_party/create', to: 'viewing_parties#create'
+  get '/discover', to: 'users#discover'
+  get '/dashboard', to: 'users#dashboard' # maybe we use show pages as dashboards
+  get '/movies', to: 'users#movies'
+  get '/movies/:movie_id', to: 'movies#show'
+  get '/movies/:movie_id/viewing_party/new', to: 'viewing_parties#new'
+  post '/movies/:movie_id/viewing_party/create', to: 'viewing_parties#create'
 
   resources :users, only: %i[create]
 end

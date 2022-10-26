@@ -21,17 +21,17 @@ RSpec.describe 'Landing Page' do
 
   it 'displays all current users' do
     visit '/'
-
+# save_and_open_page
     expect(page).to have_content(@user1.email)
     expect(page).to have_content(@user2.email)
   end
 
-  it 'can use link to view user dashboard page' do
-    visit '/'
-    click_on "imjakekim@gmail.com's Dashboard"
-
-    expect(current_path).to eq("/users/#{@user1.id}")
-  end
+  # it 'can use link to view user dashboard page' do
+  #   visit '/'
+  #   click_on "imjakekim@gmail.com's Dashboard"
+  #
+  #   expect(current_path).to eq("/users/#{@user1.id}")
+  # end
 
   it 'has a button to return you back to the homepage' do
     visit '/'

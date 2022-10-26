@@ -1,17 +1,20 @@
 class UsersController < ApplicationController
   def dashboard
-    @user = User.find(params[:id])
+    # require "pry"; binding.pry
+    # @user = User.find(params[:id])
+    # @user = User.find(session[:user_id])
   end
 
   def discover
-    @user = User.find(params[:id])
+    # require "pry"; binding.pry
+    # @user = User.find(params[:id])
   end
 
   def movies
-    @user = User.find(params[:id])
+    # @user = User.find(session[:id])
 
     if params[:search] && params[:search] == ""
-      redirect_to "/users/#{@user.id}/discover"
+      redirect_to "/discover"
     elsif params[:search]
       @movies = MovieDbFacade.search_movies(params[:search])
     else
@@ -21,8 +24,7 @@ class UsersController < ApplicationController
 
   def create
     user = User.new(user_params)
-    # user = User.new(name: params[:name], email: params[:email], password_digest: params[:password])
-
+# require "pry"; binding.pry
     if params[:password] != params[:password_confirmation]
       redirect_to register_path
       flash[:alert] = 'Passwords Do Not Match'
@@ -30,7 +32,9 @@ class UsersController < ApplicationController
       redirect_to register_path
       flash[:alert] = 'Email Already in Use'
     elsif user.save
-      redirect_to "/users/#{user.id}"
+      session[:user_id] = user.id
+      # log_in user
+      redirect_to "/dashboard"
     else
       redirect_to register_path
     end
@@ -40,10 +44,14 @@ class UsersController < ApplicationController
   end
 
   def login_user
+    user = User.find_by(email: params[:email])
     # require "pry"; binding.pry
-    if User.find_by(email: params[:email]).password_digest == params[:password]
-      user = User.find_by(email: params[:email])
-      redirect_to "/users/#{user.id}"
+    if user != nil && user.authenticate(params[:password])
+      # session[:user_id] = user.id
+      redirect_to "/dashboard"
+    else
+      flash[:alert] = 'Email or Password did not Match'
+      redirect_to '/login'
     end
   end
 

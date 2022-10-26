@@ -10,24 +10,30 @@ RSpec.describe 'User Discover Page' do
 
     @user_party1 = ViewingPartyUser.create(viewing_party_id: @party1.id, user_id: @user1.id, status: 0)
     @user_party2 = ViewingPartyUser.create(viewing_party_id: @party2.id, user_id: @user1.id, status: 1)
+
+    visit "/login"
+    fill_in 'email', with: 'imjakekim@gmail.com'
+    fill_in 'password', with: 'grjwbhiapqbvf'
+    click_on 'Login'
   end
 
   it 'can search movies', :vcr do
-    visit "/users/#{@user1.id}/discover"
+    # session[:user_id] = @user1.id
+    visit "/discover"
 
     fill_in 'search', with: 'Phoenix'
     click_on 'Find Movies'
-    expect(current_path).to eq("/users/#{@user1.id}/movies")
+    expect(current_path).to eq("/movies")
   end
 
   it 'can search top rated movies', :vcr do
-    visit "/users/#{@user1.id}/discover"
+    visit "/discover"
     click_on 'Discover Top Rated Movies'
-    expect(current_path).to eq("/users/#{@user1.id}/movies")
+    expect(current_path).to eq("/movies")
   end
 
   it 'can return discover details' do
-    visit "/users/#{@user1.id}/discover"
+    visit "/discover"
 
     expect(page).to have_content('Viewing Party Lite')
     expect(page).to have_content('Discover Movies')
@@ -39,9 +45,9 @@ RSpec.describe 'User Discover Page' do
   end
 
   it 'can search an empty field and be returned', :vcr do
-    visit "/users/#{@user1.id}/discover"
+    visit "/discover"
 
     click_on 'Find Movies'
-    expect(current_path).to eq("/users/#{@user1.id}/discover")
+    expect(current_path).to eq("/discover")
   end
 end
