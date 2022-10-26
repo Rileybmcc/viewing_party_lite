@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/register', to: 'welcome#register'
   get '/login', to: 'users#login_form'
   post '/login', to: 'users#login_user'
+  get '/logout', to: 'users#logout'
 
   get '/discover', to: 'users#discover'
   get '/dashboard', to: 'users#dashboard' # maybe we use show pages as dashboards

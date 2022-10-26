@@ -1,7 +1,15 @@
 
 <%= button_to 'Create a New User', register_path, method: :get %>
 
-<p><%= link_to "Log In", "/login", method: :get %></p>
+
+
+<% if session[:user_id] %>
+  <p><%= button_to "Log Out", "/logout", method: :get %></p>
+<% else %>
+  <p><%= button_to "Log In", "/login", method: :get %></p>
+<% end %>
+
+
 
 <h3> Existing Users: </h3>
 
