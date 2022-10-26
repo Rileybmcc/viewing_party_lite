@@ -2,11 +2,17 @@ require 'rails_helper'
 
 RSpec.describe 'User Movies Show Page From Results', :vcr do
   before :each do
-    @user1 = User.create(name: 'Jake', email: 'imjakekim@gmail.com', password_digest: 'fjidoabviofdsbavf')
+    # @user1 = User.create(name: 'Jake', email: 'imjakekim@gmail.com', password_digest: 'fjidoabviofdsbavf')
+    visit "/register"
+    fill_in :name, with: 'Jake'
+    fill_in :email, with: 'imjakekim@gmail.com'
+    fill_in :password, with: '1234'
+    fill_in :password_confirmation, with: '1234'
+    click_on 'Create New User'
   end
 
   it 'has required fixed content' do
-    visit "/users/#{@user1.id}/movies/238"
+    visit "/movies/238"
     expect(page).to have_button('Discover Page')
     expect(page).to have_button('Create Viewing Party')
     expect(page).to have_content('Vote Average:')
@@ -17,7 +23,7 @@ RSpec.describe 'User Movies Show Page From Results', :vcr do
   end
 
   it 'has required varying content' do
-    visit "/users/#{@user1.id}/movies/238"
+    visit "/movies/238"
 
     expect(page).to have_button('Create Viewing Party for The Godfather')
     expect(page).to have_content('The Godfather')
@@ -29,16 +35,16 @@ RSpec.describe 'User Movies Show Page From Results', :vcr do
   end
 
   it 'can use button to return to discover page' do
-    visit "/users/#{@user1.id}/movies/238"
+    visit "/movies/238"
     click_button 'Discover Page'
 
-    expect(current_path).to eq("/users/#{@user1.id}/discover")
+    expect(current_path).to eq("/discover")
   end
 
   it 'can use button to reach new viewing party' do
-    visit "/users/#{@user1.id}/movies/238"
+    visit "/movies/238"
     click_button 'Create Viewing Party for The Godfather'
 
-    expect(current_path).to eq("/users/#{@user1.id}/movies/238/viewing_party/new")
+    expect(current_path).to eq("/movies/238/viewing_party/new")
   end
 end
